@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <title>task manager</title>
+</head>
+
+<body class="bgi">
+  <div class="container-fluid pt-5">
+		<div class="d-flex w-50 m-auto">
+			<div class="btn-group w-100">
+				<input type="text" class="form-control" placeholder="Enter TODO Task"/>
+				<button id="addItem" class="btn btn-primary">Add</button>
+			</div>
+		</div>
+		<ul class="list-group mt-5" id="todo">
+      <!-- <li class="list-group-item"></li> -->
+   
+		</ul>
+	</div>
+<script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+      crossorigin="anonymous"
+    ></script>
+</body>
+
+<script>
+  // DOM cre H-a-n-sh-ir
+let addButton = document.querySelector("#addItem");
+let additem = document.querySelector("input[type='text']");
+let listUl = document.querySelector("#todo");
+let listLi = listUl.children;
+  //  Add rb fun
+function attach(li){
+let remove = document.createElement("button");
+remove.textContent = "X";
+remove.className = "btn float-right btn-outline-dark";
+li.appendChild(remove);
+}
+  //  Add rb to all list
+for(let i = 0; i < listLi.length; i += 1){
+ attach(listLi[i]);
+}
+  //  Add li items
+addButton.addEventListener("click",function(){
+       let inputValue = additem.value;
+       if(inputValue != ""){
+          let ul = document.querySelector("ul");
+          let li = document.createElement("li");
+          li.className = "list-group-item";
+          li.innerHTML = additem.value;
+          attach(li);
+          // Add item to the top
+          ul.insertBefore(li,ul.childNodes[0]);
+          additem.value = "";
+       }else{
+          alert("empty input fields");
+       }
+ 
+});
+//  r li iteams
+listUl.addEventListener("click",(arg)=>{
+ if(arg.target.tagName == "BUTTON"){
+   let rmvButton = arg.target;
+   let li = rmvButton.parentNode;
+   let ul = li.parentNode;
+   ul.removeChild(li);
+ }
+ 
+});
+
+
+</script>
+
+</html>
+
