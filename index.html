@@ -46,18 +46,18 @@ let addButton = document.querySelector("#addItem");
 let additem = document.querySelector("input[type='text']");
 let listUl = document.querySelector("#todo");
 let listLi = listUl.children;
-  //  Add rb fun
+  //  Added removebutton function
 function attach(li){
 let remove = document.createElement("button");
 remove.textContent = "X";
 remove.className = "btn float-right btn-outline-dark";
 li.appendChild(remove);
 }
-  //  Add rb to all list
+  //  Added removebutton to all list
 for(let i = 0; i < listLi.length; i += 1){
  attach(listLi[i]);
 }
-  //  Add li items
+  //  Added li items
 addButton.addEventListener("click",function(){
        let inputValue = additem.value;
        if(inputValue != ""){
@@ -66,7 +66,7 @@ addButton.addEventListener("click",function(){
           li.className = "list-group-item";
           li.innerHTML = additem.value;
           attach(li);
-          // Add item to the top
+          // Added item to the top
           ul.insertBefore(li,ul.childNodes[0]);
           additem.value = "";
        }else{
@@ -74,7 +74,7 @@ addButton.addEventListener("click",function(){
        }
  
 });
-//  r li iteams
+//  remove li iteams
 listUl.addEventListener("click",(arg)=>{
  if(arg.target.tagName == "BUTTON"){
    let rmvButton = arg.target;
